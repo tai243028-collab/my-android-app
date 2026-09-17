@@ -24,6 +24,11 @@ jobs:
         run: |
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
+      - name: Configure Gradle Properties (Enable AndroidX)
+        run: |
+          echo "android.useAndroidX=true" >> gradle.properties
+          echo "android.enableJetifier=true" >> gradle.properties
+
       - name: Build Debug APK
         run: |
           gradle wrapper --gradle-version 8.5
